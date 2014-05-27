@@ -1,8 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-/* a = 97, z = 122 */
-
 main(){
 
 	srand(time(NULL));
