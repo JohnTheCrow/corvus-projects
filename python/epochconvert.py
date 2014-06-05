@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 
+# Convert a UNIX epoch time stamp into a human readable date and time
+
 from datetime import *
 import sys
 
