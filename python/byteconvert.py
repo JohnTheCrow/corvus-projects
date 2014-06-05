@@ -1,5 +1,8 @@
 #!/usr/bin/env python
 
+# It would be cool to rewrite this jam to take command line arguments. Maybe
+# rework the conversion math as a function (functions?).
+
 size = ["b", "K", "M", "G"]
 
 print "Enter a number followed immediately by a file size.\n\

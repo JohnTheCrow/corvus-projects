@@ -12,4 +12,4 @@ elif len(sys.argv) == 2:
 	x = sys.argv[1]
 	print datetime.fromtimestamp(float(x))
 else:
-	print "Enter just one arguement."
+	print "Usage: epochconvert [timestamp]"
