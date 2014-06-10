@@ -2,7 +2,20 @@
 
 import sys
 
-usage = "'byteconvert [SIZE]' where SIZE is a number followed by b, k, m, g, or t. E.g. '1024m'."
+usage = "\
+Usage:\n\
+'byteconvert [SIZE][UNIT_letter]' :: Example: byteconvert 2048G\n\
+'byteconvert [SIZE] [UNIT_word]' :: Example: byteconvert 500 megabytes\n\
+[UNIT_word] can be one of: k, kilo, kb, kib, kilobytes, m, mb, mib,\n\
+megabytes, g, gig, gb, gib, gigabytes, t, tb, tib, terabytes.\n\
+'byteconvert'. Then, File size> '[UNIT_letter]'\
+"
+
+bytes = ['b', 'bytes']
+kilobytes = ['k', 'kilo', 'kb', 'kib', 'kilobytes']
+megabytes = ['m', 'mb', 'mib', 'megabytes']
+gigabytes = ['g', 'gig', 'gb', 'gib', 'gigabytes']
+terabytes = ['t', 'tb', 'tib', 'terabytes']
 
 def bconv(value): #Convert bytes to KiB, MiB, GiB, TiB
 	print "%.2f B : %.2f KiB : %.2f MiB : %.2f GiB : %.2f TiB" % \
@@ -25,15 +38,15 @@ def tconv(value): #Convert TiB to bytes, KiB, MiB, GiB
 	(value * (1024 ** 4), value * (1024 ** 3), value * (1024 ** 2), value * 1024, value)
 
 def determine_unit():
-	if unit == "b":
+	if unit in bytes:
 		bconv(value)
-	elif unit == "k":
+	elif unit in kilobytes:
 		kconv(value)
-	elif unit == "m":
+	elif unit in megabytes:
 		mconv(value)
-	elif unit == "g":
+	elif unit in gigabytes:
 		gconv(value)
-	elif unit == "t":
+	elif unit in terabytes:
 		tconv(value)
 	else:
 		print usage
@@ -58,6 +71,13 @@ elif len(sys.argv) == 2: #One argument was given
 	if is_number(data[0:-1]) == True:
 		value = float(data[0:-1])
 		unit = data[-1].lower()
+		determine_unit()
+	else:
+		print usage
+elif len(sys.argv) == 3: #Unit given separately
+	if is_number(sys.argv[1]) == True:
+		value = float(sys.argv[1])
+		unit = sys.argv[2].lower()
 		determine_unit()
 	else:
 		print usage
