@@ -21,10 +21,15 @@ void main()
 
 void bubbleSort(int *array)
 {
-	int i, j, tmp;
+	int i, j, tmp, didSwap;
+
+/* If no array elements were swapped, the list is already
+ * sorted and the loop will break. */
 
 	for(i = 0; i < 10; i++)
 	{
+		didSwap = 0;
+
 		for(j = 0; j < 10; j++)
 		{
 			if(array[j] > array[i])
@@ -32,7 +37,13 @@ void bubbleSort(int *array)
 				tmp = array[i];
 				array[i] = array[j];
 				array[j] = tmp;
+				didSwap = 1;
 			} // Swap i and j if j > i
+		}
+
+		if(didSwap == 0)
+		{
+			break;
 		}
 	}
 } // End of bubbleSort()
