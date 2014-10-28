@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 /* Pull a random line out of /usr/share/dict/linux.words and print it to the
  * terminal. */
