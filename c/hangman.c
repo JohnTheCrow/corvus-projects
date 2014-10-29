@@ -19,7 +19,7 @@ int main(void)
 	while( ((strstr(blanks, "_")) != NULL) && (misses > 0))
 	{
 		printf("Guesses so far: %s\n", attempts);
-		printf("%d misses left.\n", misses);
+		printf("%d miss%s left.\n", misses, (misses > 1) ? "es" : "");
 		getGuess();
 		printf("%s\n\n", blanks);
 	}
