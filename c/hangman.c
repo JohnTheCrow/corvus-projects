@@ -13,9 +13,16 @@ int main(void)
 	srand(time(NULL));
 
 	getWord();
+	if( (strstr(word, "-")) != NULL)
+	{
+		printf("Your word had a dash in it, so I'm just going to exit now");
+		printf(" because frankly I don't want to deal with that. Please try");
+		printf(" again.\n");
+		exit(1);
+	} //I am not a good programmer.
+
 	initializeBlanks();
 
-/* Still blanks in word. */
 	while( ((strstr(blanks, "_")) != NULL) && (misses > 0))
 	{
 		printf("Guesses so far: %s\n", attempts);
@@ -29,7 +36,7 @@ int main(void)
 		printf("Too many misses. Game over. The word was %s.\n", word);
 		exit(1);
 	}
-	if( (strstr(blanks, "_")) == NULL) //There are no blanks in word.
+	if( (strstr(blanks, "_")) == NULL)
 	{
 		printf("You won!\n");
 	}
@@ -104,7 +111,7 @@ int getGuess()
 
 	char c = guess[0];
 
-	if( (strstr(word, guess)) != NULL) //If guess is in word.
+	if( (strstr(word, guess)) != NULL)
 	{
 		for(i = 0; i < strlen(word); i++)
 		{
