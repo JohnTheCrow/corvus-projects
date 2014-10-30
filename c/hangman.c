@@ -27,7 +27,7 @@ int main(void)
 	{
 		printf("Guesses so far: %s\n", attempts);
 		printf("%d miss%s left.\n", misses, (misses > 1) ? "es" : "");
-		printf("%s\n\n", blanks);
+		printf("%s\n", blanks);
 		getGuess();
 	}
 
