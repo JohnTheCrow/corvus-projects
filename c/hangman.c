@@ -29,6 +29,7 @@ int main(void)
 		printf("%d miss%s left.\n", misses, (misses > 1) ? "es" : "");
 		printf("%s\n", blanks);
 		getGuess();
+		printf("\n");
 	}
 
 	if(misses == 0)
@@ -38,6 +39,7 @@ int main(void)
 	}
 	if( (strstr(blanks, "_")) == NULL)
 	{
+		printf("%s\n", word);
 		printf("You won!\n");
 	}
 }
@@ -97,13 +99,13 @@ int getGuess()
 
 	if(strlen(guess) > 1)
 	{
-		printf("Please enter only one character at a time.\n");
+		printf("\nPlease enter only one character at a time.");
 		return;
 	}
 
 	if( (strstr(attempts, guess)) != NULL) //Letter already guessed.
 	{
-		printf("You already guessed that letter.\n");
+		printf("\nYou already guessed that letter.");
 		return;
 	}
 
