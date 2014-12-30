@@ -35,7 +35,7 @@ int main(void)
 	if(misses == 0)
 	{
 		printf("Too many misses. Game over. The word was %s.\n", word);
-		exit(1);
+		return 0;
 	}
 	if( (strstr(blanks, "_")) == NULL)
 	{
@@ -51,6 +51,9 @@ int getWord()
  * The subtraction is necessary as trying to read past the file results in
  * error. */
 
+/* TODO: We should figure out the length of /usr/share/dict/linux.words
+ * programatically in case the file changes with package updates. */
+
 	unsigned long seed = rand() % 4953675;
 
 	FILE *fp = fopen("/usr/share/dict/linux.words", "r");
@@ -60,20 +63,22 @@ int getWord()
 		exit(1);
 	}
 
+	// Set file position indicator _seed_ characters offset from beginning.
 	fseek(fp, seed, SEEK_SET);
 
 	while(fgetc(fp) != '\n') 
 	{
 		;
-	} //File pointer is now at beginning of a word.
+	} // File position indicator is now at beginning of a word.
 
+	// Make word lowercase and removing trailing newline char.
 	fgets(word, 80, fp);
 	int i;
 	for(i = 0; i < strlen(word); i++)
 	{
 		word[i] = tolower(word[i]);
 	}
-	word[i-1] = '\0'; //word now no longer contains a newline character.
+	word[i-1] = '\0';
 
 	fclose(fp);
 }
@@ -103,7 +108,7 @@ int getGuess()
 		return;
 	}
 
-	if( (strstr(attempts, guess)) != NULL) //Letter already guessed.
+	if( (strstr(attempts, guess)) != NULL)
 	{
 		printf("\nYou already guessed that letter.");
 		return;
