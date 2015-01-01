@@ -50,7 +50,7 @@ int main(int argc, char **argv)
 /* When passing a regular variable to a function, only a copy of the value is
  * passed. In other words, a called function cannot alter the value of a
  * variable in the calling function's scope. This is not so with arrays, or
- * with any function you pass by address. */
+ * with any variable you pass by address. */
 	int change_me = 5;
 	add_three(&change_me); // change_me passed by address, not value.
 	printf("%d\n", change_me); // change_me is altered despite its local scope.
@@ -60,14 +60,14 @@ int main(int argc, char **argv)
 
 int largest(int * array, int length)
 {
-	int count;
+	int i;
 	int  biggest = array[0];
 
-	for(count = 0; count < length; count++)
+	for(i = 0; i < length; i++)
 	{
-		if(array[count] > biggest)
+		if(array[i] > biggest)
 		{
-			biggest = array[count];
+			biggest = array[i];
 		}
 	}
 

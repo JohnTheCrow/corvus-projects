@@ -71,7 +71,7 @@ int getWord()
 		;
 	} // File position indicator is now at beginning of a word.
 
-	// Make word lowercase and removing trailing newline char.
+	// Make word lowercase and remove trailing newline char.
 	fgets(word, 80, fp);
 	int i;
 	for(i = 0; i < strlen(word); i++)
