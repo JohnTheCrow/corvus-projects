@@ -64,4 +64,4 @@ int * addarrays(int * array1, int * array2, int count)
  * addarrays(). The theory is that since we're returning a location in memory,
  * and the function that wrote to that address has exited after it returns
  * the address, the values in that address (and subsequent addresses) can not
- * be considered valid. */
+ * be considered valid unless the variable is static. */
