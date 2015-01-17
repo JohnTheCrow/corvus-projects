@@ -12,14 +12,12 @@ int main(void)
 {
 	srand(time(NULL));
 
+dash:
 	getWord();
 	if( (strstr(word, "-")) != NULL)
 	{
-		printf("Your word had a dash in it, so I'm just going to exit now");
-		printf(" because frankly I don't want to deal with that. Please try");
-		printf(" again.\n");
-		exit(1);
-	} //I am not a good programmer.
+		goto dash;
+	} 
 
 	initializeBlanks();
 
