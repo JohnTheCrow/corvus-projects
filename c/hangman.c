@@ -18,7 +18,7 @@ dash:
 	{
 		goto dash;
 	} 
-	printf("%s\n", word);
+
 	initializeBlanks();
 
 	while( ((strstr(blanks, "_")) != NULL) && (misses > 0))
