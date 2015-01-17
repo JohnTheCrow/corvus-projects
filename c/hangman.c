@@ -18,7 +18,7 @@ dash:
 	{
 		goto dash;
 	} 
-
+	printf("%s\n", word);
 	initializeBlanks();
 
 	while( ((strstr(blanks, "_")) != NULL) && (misses > 0))
@@ -45,21 +45,17 @@ dash:
 int getWord()
 {
 
-/* 4953675 is the number of chars in /usr/share/dict/linux.words minus a few.
- * The subtraction is necessary as trying to read past the file results in
- * error. */
-
-/* TODO: We should figure out the length of /usr/share/dict/linux.words
- * programatically in case the file changes with package updates. */
-
-	unsigned long seed = rand() % 4953675;
-
+/* Open the words file, determine its length, and generate a random seed. */
 	FILE *fp = fopen("/usr/share/dict/linux.words", "r");
 	if(fp == 0)
 	{
 		printf("Unable to find /usr/share/dict/linux.words.\n");
 		exit(1);
 	}
+	fseek(fp, 0, SEEK_END);
+	long base = ftell(fp) - 50;
+	unsigned long seed = rand() % base;
+
 
 	// Set file position indicator _seed_ characters offset from beginning.
 	fseek(fp, seed, SEEK_SET);
