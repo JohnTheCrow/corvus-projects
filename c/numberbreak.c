@@ -13,7 +13,7 @@ int main(int argc, char **argv)
 	int digit[10];
 	int i;
 
-//	printf("%d\n", number);
+	printf("%d\n", number);
 
 	for(i = 0; i < 10; i++)
 	{
@@ -22,11 +22,9 @@ int main(int argc, char **argv)
 		place /= 10;
 	}
 
-	for(i = 0; i < 10; i++)
-	{
-		if(digit[i] != 0)
-			break;
-	}
+	i = 0;
+	while(digit[i] == 0)
+		i++;
 
 	for(; i < 10; i++)
 		printf("%d ", digit[i]);
