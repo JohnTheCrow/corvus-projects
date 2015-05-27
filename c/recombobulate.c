@@ -13,7 +13,7 @@ int main(int argc, char **argv)
 	FILE *file1 = fopen(argv[1], "r");
 	FILE *file2 = fopen(argv[2], "r");
 	char buffer1[80], buffer2[80], ch;
-	int nr_lines1 = 0; int nr_lines2 = 0;
+	int nr_lines1 = 0; int nr_lines2 = 0, i;
 
 	if(argc != 3)
 	{
@@ -49,9 +49,8 @@ int main(int argc, char **argv)
 	fseek(file1, 0, SEEK_SET);
 	fseek(file2, 0, SEEK_SET);
 
-	while(fgetc(file1) != EOF)
+	for(i = 0; i < nr_lines1; i++)
 	{
-		fseek(file1, -1, SEEK_CUR);
 		fgets(buffer1, 80, file1);
 		buffer1[strlen(buffer1)-1] = '\0';
 		fgets(buffer2, 80, file2);
