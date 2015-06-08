@@ -2,17 +2,17 @@
 #include <stdlib.h>
 #include <string.h>
 
-void printnames(void);
+void printvalues(void);
 
-struct person{
-	char name[20];
-	struct person * next; 
+struct data{
+	char value[20];
+	struct data * next; 
 };
 
-struct person * head = NULL;
-struct person * current = NULL;
-struct person * new = NULL;
-struct person * marker = NULL;
+struct data * head = NULL;
+struct data * current = NULL;
+struct data * new = NULL;
+struct data * marker = NULL;
 
 int main(int argc, char *argv[])
 {
@@ -24,26 +24,26 @@ int main(int argc, char *argv[])
 	int i;
 	for(i = 0; i < 5; i++)
 	{
-		new = (struct person *)malloc(sizeof(struct person));
+		new = (struct data *)malloc(sizeof(struct data));
 		if(!new)
 		{
 			printf("Error allocating memory.\n");
 			return 1;
 		}
 		printf("Enter a value: ");
-		fgets(new->name, 20, stdin);
-		new->name[strcspn(new->name, "\n")] = '\0';
+		fgets(new->value, 20, stdin);
+		new->value[strcspn(new->value, "\n")] = '\0';
 		new->next = head;
 		head = new;
 	}
 
-	printnames();
+	printvalues();
 
 /* Create a new element at the end of the list. */
 	current = head;
 	while(current->next)
 		current = current->next;
-	new = (struct person *)malloc(sizeof(struct person));
+	new = (struct data *)malloc(sizeof(struct data));
 	if(!new)
 	{
 		printf("Error allocating memory.\n");
@@ -52,18 +52,20 @@ int main(int argc, char *argv[])
 	current->next = new;
 	new->next = NULL;
 	printf("Enter a value: ");
-	fgets(new->name, 20, stdin);
-	new->name[strcspn(new->name, "\n")] = '\0';
+	fgets(new->value, 20, stdin);
+	new->value[strcspn(new->value, "\n")] = '\0';
 
-	printnames();
+	printvalues();
 
 /* Create new element and insert it into the middle of the list. */
-//TODO: Why is this placing the element 4th in the list?
 	current = head;
-	for(i = 0; i < 2; i++) // Because I want my new element placed 3rd
+/* This for loop only executes once so it's not strictly necessary. However
+ * I'm leaving it here to make it easy to change where the new element would
+ * go. */
+	for(i = 0; i < 1; i++) // Places new element in 3rd position
 		current = current->next;
-	marker = current; // Not necessary but "marker" is more descriptive
-	new = (struct person *)malloc(sizeof(struct person));
+	marker = current; // Could use "current" but "marker" is more descriptive
+	new = (struct data *)malloc(sizeof(struct data));
 	if(!new)
 	{
 		printf("Error allocating memory.\n");
@@ -72,21 +74,21 @@ int main(int argc, char *argv[])
 	new->next = marker->next;
 	marker->next = new;
 	printf("Enter a value: ");
-	fgets(new->name, 20, stdin);
-	new->name[strcspn(new->name, "\n")] = '\0';
+	fgets(new->value, 20, stdin);
+	new->value[strcspn(new->value, "\n")] = '\0';
 
-	printnames();
+	printvalues();
 
 	return 0;
 }
 
-void printnames(void)
+void printvalues(void)
 {
 	printf("You entered the values: ");
 	current = head;
-	while(current->name)
+	while(current->value)
 	{
-		printf("%s ", current->name);
+		printf("%s ", current->value);
 		current = current->next;
 	}
 	printf("\n");
