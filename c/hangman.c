@@ -6,7 +6,7 @@
 char word[80];
 char blanks[80];
 char attempts[80];
-int misses = 10;
+int guesses = 10;
 
 int main(void)
 {
@@ -21,16 +21,16 @@ dash:
 
 	initializeBlanks();
 
-	while( ((strstr(blanks, "_")) != NULL) && (misses > 0))
+	while( ((strstr(blanks, "_")) != NULL) && (guesses > 0))
 	{
 		printf("Guesses so far: %s\n", attempts);
-		printf("%d miss%s left.\n", misses, (misses > 1) ? "es" : "");
+		printf("%d guess%s left.\n", guesses, (guesses > 1) ? "es" : "");
 		printf("%s\n", blanks);
 		getGuess();
 		printf("\n");
 	}
 
-	if(misses == 0)
+	if(guesses == 0)
 	{
 		printf("Too many misses. Game over. The word was %s.\n", word);
 		return 0;
@@ -89,7 +89,7 @@ int initializeBlanks()
 int getGuess()
 {
 /* Get user's guess. If that letter is in word, update blanks in the
- * appropriate position(s). If not, decrement misses. */
+ * appropriate position(s). If not, decrement guesses. */
 
 	char guess[2];
 	int i;
@@ -124,6 +124,6 @@ int getGuess()
 	}
 	else
 	{
-		misses--;
+		guesses--;
 	}
 }
