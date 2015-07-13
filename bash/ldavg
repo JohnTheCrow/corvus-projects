@@ -1,0 +1,12 @@
+#!/bin/bash
+
+# Copy any sar files in sos_commands/sar/ to var/log/sa/ then find any
+# instances in available sar data where the 15-minute load average is greater
+# than the number of logical processors.
+
+CPUS=$(grep -c processor proc/cpuinfo)
+
+cp sos_commands/sar/sar* var/log/sa/ 2>/dev/null
+
+echo '                                runq-sz  plist-sz   ldavg-1   ldavg-5  ldavg-15'
+awk -v CPUS=$CPUS '/ldavg/,/Ave/{if ($(NF) > CPUS){print FILENAME ": " $0}}' var/log/sa/sar* | grep -Ev 'ldavg|Ave'
