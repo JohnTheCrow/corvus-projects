@@ -4,9 +4,19 @@
 # instances in available sar data where the 15-minute load average is greater
 # than the number of logical processors.
 
-CPUS=$(grep -c processor proc/cpuinfo)
+# Does not work for RHEL7 as RHEL7's sar doesn't use ldavg-15 as its last field
 
+CPUS=$(grep -c processor proc/cpuinfo)
 cp sos_commands/sar/sar* var/log/sa/ 2>/dev/null
 
-echo '                                runq-sz  plist-sz   ldavg-1   ldavg-5  ldavg-15'
-awk -v CPUS=$CPUS '/ldavg/,/Ave/{if ($(NF) > CPUS){print FILENAME ": " $0}}' var/log/sa/sar* | grep -Ev 'ldavg|Ave'
+ISRHEL7=$(grep -E '7\.[0-9]+' etc/redhat-release)
+
+if [ -n "$ISRHEL7" ]; then
+	echo $CPUS CPUS found
+	echo '                                runq-sz  plist-sz   ldavg-1   ldavg-5  ldavg-15   blocked'
+	awk -v CPUS=$CPUS '/ldavg/,/Ave/{if ($(NF-1) > CPUS){print FILENAME ": " $0}}' var/log/sa/sar* | grep -Ev 'ldavg|Ave'
+else
+	echo $CPUS CPUS found
+	echo '                                runq-sz  plist-sz   ldavg-1   ldavg-5  ldavg-15'
+	awk -v CPUS=$CPUS '/ldavg/,/Ave/{if ($(NF) > CPUS){print FILENAME ": " $0}}' var/log/sa/sar* | grep -Ev 'ldavg|Ave'
+fi
