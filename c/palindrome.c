@@ -15,11 +15,6 @@
  * whether a character is lower-case or upper-case is irrelevant.
  */
 
-/*
- * OK this time we're gonna see if we wanna use one of the given inputs, read
- * some input from a file, or read some input from the command line.
- */
-
 char * fix_string(char * string);
 int is_palindrome(char * string);
 int sample(void);
@@ -168,7 +163,7 @@ int from_file(void)
 /*
  * Store that number of lines in a buffer. Our file pointer should now be on
  * the second line. I'm not sure how to store an undetermined amount of data
- * in a buffer. 8 MiB will have to be enough for now.
+ * in a buffer. 8 KiB will have to be enough for now.
  */
 	char * buffer = (char *)malloc(sizeof(char) * 8192);
 	char * input = (char *)malloc(sizeof(char) * 8192);
@@ -198,7 +193,7 @@ int from_cmdline(void)
 	fgets(input, 128, stdin);
 
 /*
- * OK, that last part was a _bitch_. Without that while loop, the input string
+ * OK, that last part was a _pain_. Without that while loop, the input string
  * wound up containing nothing but a single '\n', which is where fgets() will
  * stop reading. This resulted in the user never getting to enter anything and
  * "Palindrom" always printing to the screen (I guess a single character is a
