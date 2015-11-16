@@ -21,9 +21,7 @@ int main(int argc, char *argv[])
 	int number = atoi(argv[1]);
 
 	if(number == 0) {
-		printf("You entered \"0\" or some string that evaluated to it. "
-			"This has caused a rip in the fabric of space time. "
-			"I hope you're proud of yourself.\n");
+		printf("0\n");
 		return 0;
 	}
 
