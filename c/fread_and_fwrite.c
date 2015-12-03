@@ -17,6 +17,10 @@ int main(int argc, char *argv[])
 
 	/* Append "b" to the mode when reading and writing binary files. */
 	FILE *fp = fopen("/tmp/data", "w+b");
+	if(!fp) {
+		fprintf(stderr, "Error opening file\n");
+		exit(1);
+	}
 
 	for(i = 0; i < 25; i++)
 		array1[i] = i * i;
@@ -24,9 +28,12 @@ int main(int argc, char *argv[])
 	fwrite(array1, sizeof(int), 25, fp);
 	fseek(fp, 0, SEEK_SET); // set fp back to beginning of file
 	fread(array2, sizeof(int), 25, fp);
+	fclose(fp);
 
 	for(i = 0; i < 25; i++)
 		printf("%d\n", array2[i]);
+
+	remove("/tmp/data");
 
 	return 0;
 }
