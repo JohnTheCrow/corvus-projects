@@ -31,5 +31,12 @@ int main(int argc, char *argv[])
 
 	printf("%s%s", buf1, buf2);
 
+/* The clock() function returns the amount of time in CLOCKS_PER_SEC that the 
+ * program has been running. The return type is a clock_t. */
+
+	long clck = clock();
+	printf("Program ran for %ld CLOCKS which is ~%f seconds.\n",
+		clck, (float)clck / (float)CLOCKS_PER_SEC);
+
 	return 0;
 }
