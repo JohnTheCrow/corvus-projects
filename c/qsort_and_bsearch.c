@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 
 #define POOLSZ 10
 
@@ -66,10 +67,5 @@ int main(int argc, char *argv[])
 
 int numcmp(const void *item1, const void *item2)
 {
-	if(*(int *)item1 < *(int *)item2)
-		return -1;
-	if(*(int *)item1 > *(int *)item2)
-		return 1;
-	if(*(int *)item1 == *(int *)item2)
-		return 0;
+	return *(int *)item1 - *(int *)item2;
 }
