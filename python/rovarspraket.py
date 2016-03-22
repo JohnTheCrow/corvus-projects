@@ -16,6 +16,6 @@ string_out = ""
 for letter in string_in:
     if letter not in vowels and letter.isalpha():
         letter = letter + 'o' + letter
-    string_out += "".join(letter)
+    string_out += letter
 
 print(string_out)
