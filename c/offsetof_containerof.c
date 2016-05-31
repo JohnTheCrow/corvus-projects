@@ -6,7 +6,7 @@
  * STRUCT_TYPE. Note that the address is not dereferenced.
  */
 
-#define offsetof(STRUCT_TYPE, MEMBER) ((long)&((STRUCT_TYPE *)0)->MEMBER)
+#define offsetof(STRUCT_TYPE, MEMBER) ((unsigned long)&((STRUCT_TYPE *)0)->MEMBER)
 
 /* Returns a pointer to the base of a struct given a pointer (ptr) to a
  * member, the type of struct, and name of the member. typeof() is apparently
