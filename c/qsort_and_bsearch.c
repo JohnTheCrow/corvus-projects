@@ -31,16 +31,16 @@ int main(int argc, char *argv[])
     printf("\n");
 */
 
-	qsort(array, POOLSZ, sizeof(int), numcmp);
+    qsort(array, POOLSZ, sizeof(int), numcmp);
 	
 /*
-	for(i = 0; i < POOLSZ; i++)
-		printf("%d ", array[i]);
-	printf("\n");
+    for(i = 0; i < POOLSZ; i++)
+        printf("%d ", array[i]);
+    printf("\n");
 */
 
-	printf("Enter number to search for (0-99): ");
-	scanf("%d", &key);
+    printf("Enter number to search for (0-99): ");
+    scanf("%d", &key);
 
 /*
  * bsearch() returns a void pointer to the matching member of the array, so
@@ -48,16 +48,16 @@ int main(int argc, char *argv[])
  * in the array, bsearch() returns NULL.
  */
 
-	found = (int *)bsearch(&key, array, POOLSZ, sizeof(int), numcmp);
+    found = (int *)bsearch(&key, array, POOLSZ, sizeof(int), numcmp);
 
-	if(!found) {
-		printf("Number not found in array.\n");
-		return 1;
-	} else {
-	printf("Number found: %d\n", *found);
-	}
+    if(!found) {
+        printf("Number not found in array.\n");
+        return 1;
+    } else {
+        printf("Number found: %d\n", *found);
+    }
 
-	return 0;
+    return 0;
 }
 
 /*
@@ -67,5 +67,5 @@ int main(int argc, char *argv[])
 
 int numcmp(const void *item1, const void *item2)
 {
-	return *(int *)item1 - *(int *)item2;
+    return *(int *)item1 - *(int *)item2;
 }
