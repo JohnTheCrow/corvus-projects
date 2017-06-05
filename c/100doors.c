@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-/* 100 doors start out opened. Iterate through the doors. On the 1st iteration,
+/* 100 doors start out closed. Iterate through the doors. On the 1st iteration,
  * toggle the state (open/closed) of every door. On the 2nd iteration, toggle
  * the state of every 2nd door. Continue until on the 100th iteration where you
  * toggle the state of the 100th door. What's the state of the doors? */
